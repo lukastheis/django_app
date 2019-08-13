@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-1.3.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-tables-1.3.2.min.css"/>
+    <title>Bokeh2</title>
+</head>
+<body>
+        <form method ="post" name="one">{% csrf_token %}
+                <h1>1. Select comparison-criterion</h1>
+                <select name="crit">
+                    {% for variable in variables %}
+                    <option value="{{variable}}">{{variable}}</option>
+                    {% endfor %}
+                </select>
+                <h1>2. Select Simulation</h1>
+                <select name="crit2">
+                    <option value=""></option>
+                    {% for simulation in simulations %}
+                    <option value="{{simulation}}">{{simulation}}</option>
+                    {% endfor %}
+                </select>
+                <h1>Submit here</h1>
+                <button type="submit" value="Submit">Submit</button>
+        </form>
+    <h1>Bokeh Starter Graph</h1>
+    {{div| safe}}
+</body>
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-1.3.2.min.js"></script>
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.2.min.js"></script>
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-tables-1.3.2.min.js"></script>
+    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-api-1.3.2.min.js"></script>
+    {{script |safe}}
+</html>
