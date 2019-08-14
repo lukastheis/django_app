@@ -29,7 +29,7 @@ def test(request):
     var_var_expl=["Strompreis","Leistung Heizkessel","Leistung BHKW","Leistung Elektrodenkessel"]
 
     # Simulation results
-    sim_array=["Waerme_1.mat","Waerme_2.mat","Waerme_3.mat"]
+    sim_array=["Waerme_1.mat","Waerme_2.mat","Waerme_3.mat","Waerme_4.mat","Waerme_5.mat"]
 
 
     if request.method=="GET":
@@ -110,10 +110,10 @@ def test(request):
 
         # barplots are created if data is available 
         p = figure(x_range=energy_dict['simulation'], plot_width=800, plot_height=800, title="Energiebedarf",
-               toolbar_location=None, tools="")
-        p.vbar_stack(list(energy_dict.columns[1:]), x='simulation', width=0.9,legend=var_const_expl[:len(energy_dict.columns)-1],color=energy_palette, source=energy_dict)
+               toolbar_location=None, tools="hover", tooltips="$name" ": " "@$name")
+        p.vbar_stack(list(energy_dict.columns[1:]), x='simulation', width=0.9, legend=var_const_expl[:len(energy_dict.columns)-1],color=energy_palette, source=energy_dict)
         p1 = figure(x_range=cost_dict['simulation'], plot_width=800, plot_height=800, title="Kosten",
-               toolbar_location=None, tools="")
+               toolbar_location=None, tools="hover", tooltips="$name" ": " "@$name")
         p1.vbar_stack(list(cost_dict.columns[1:]), x='simulation', width=0.9,legend=var_const_expl[len(energy_dict)-1:],color=cost_palette, source=cost_dict)
     else:
         # barplots to display while data not available
